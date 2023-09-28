@@ -176,6 +176,7 @@ SELECT
 FROM dbo.Data
 GROUP BY DATEPART(YEAR, Date), DATEPART(MONTH, Date)
 ORDER BY 1,2
+	
 --- recovered case
 SELECT 
 	DATEPART(YEAR, Date) AS 'Year', 
@@ -232,7 +233,7 @@ SELECT
 	ROUND(AVG(Confirmed),0) AS avg_confirmed,
 	ROUND(AVG(Deaths),0) AS avg_deaths,
 	ROUND(AVG(Recovered),0) AS avg_recoverd
-FROM dbo.Data
+FROM Data
 
 /****** we can use percentiles to answer above question and understand our data distributions *******/
 
@@ -257,7 +258,7 @@ SELECT
 	PERCENTILE_DISC(0.6) WITHIN GROUP(ORDER BY Confirmed) over () AS pct_60_revenues,
 	PERCENTILE_DISC(0.9) WITHIN GROUP(ORDER BY Confirmed) over () AS pct_90_revenues,
 	PERCENTILE_DISC(0.95) WITHIN GROUP(ORDER BY Confirmed) over () AS pct_95_revenues
-FROM dbo.Data;
+FROM Data;
 
 /*** Percentile Continuous Function ***/
 SELECT 
@@ -277,7 +278,7 @@ SELECT ((Avg(Confirmed * Recovered) - (Avg(Confirmed) * Avg(Recovered))) / (StDe
 FROM dbo.Data
 --deaths - recovered: 0.60565
 SELECT ((Avg(deaths * Recovered) - (Avg(deaths) * Avg(Recovered))) / (StDev(deaths) * StDev(Recovered))) AS 'Cor_dt_rc'
-FROM dbo.Data
+FROM Data
 
 
 /* We want to add a row number based on the case */
