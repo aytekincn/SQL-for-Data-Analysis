@@ -314,3 +314,6 @@ FROM dbo.Data
 SELECT AVG(Deaths) - ((count(Confirmed)*sum(Confirmed*Deaths) - sum(Confirmed)* sum(Deaths))/(count(Confirmed)*sum(Confirmed*Confirmed) - sum(Confirmed)* sum(Confirmed)))*AVG(Confirmed)
 FROM dbo.Data
 
+
+
+.
